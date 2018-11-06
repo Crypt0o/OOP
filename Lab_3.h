@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include "pch.h"
-#define clasa class
 
 /*
 	AIA 2 - Programarea Orientata pe obiecte: Laboratorul 3
