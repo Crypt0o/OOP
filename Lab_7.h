@@ -94,12 +94,12 @@ public:
 			cout<< b.returnCoordinate("x") << '\t' << b.returnCoordinate("y")<< '\t' << b.returnCoordinate("z") << endl;
 
 			cout << "\nCoordonatele polare ale punctelor segmentului sunt\n";
-			cout << endl << a.returnCoordinate("rho") << '\t' << a.returnCoordinate("thetha") << '\t' << a.returnCoordinate("phi") << endl;
+			cout << endl << a.returnCoordinate("rho") << '\t' << a.returnCoordinate("theta") << '\t' << a.returnCoordinate("phi") << endl;
 
-			cout << b.returnCoordinate("rho") << '\t' << b.returnCoordinate("thetha") << '\t' << b.returnCoordinate("phi") << endl;
+			cout << b.returnCoordinate("rho") << '\t' << b.returnCoordinate("theta") << '\t' << b.returnCoordinate("phi") << endl;
 
 
-			cout << "\nLungimea segmentului este: " << getLength() << endl;
+			cout << "\nLungimea segmentului este: " << getLength() << endl << endl;
 		}
 
 	};

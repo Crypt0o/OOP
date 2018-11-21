@@ -31,6 +31,10 @@ public:
 			cout << "Introduceti anul: "; cin >> an;
 		}
 
+		Data_de_Nastere(int Zi, int Luna, int An) {
+			zi = Zi, luna = Luna, an = An;
+		}
+
 		~Data_de_Nastere() {
 			cout << "A fost apelat destructorul clasei Data_de_Nastere\n";
 		}
@@ -47,11 +51,15 @@ public:
 
 	public:
 		Student() {
-			cout << "\nA fost apelat constructorul clasei Student\n";
+			cout << "\nStudent nou\n";
 
 			cout << "\nIntroduceti numele studentului: ";		cin >> nume;
 			cout << "Introduceti prenumele studentului: ";	cin >> prenume;
 			cout << "Introduceti varsta studentului: ";		cin >> varsta;
+		}
+
+		Student(string Nume, string Prenume, unsigned Varsta) {
+			Student::nume = Nume, Student::prenume = Prenume, Student::varsta = Varsta;
 		}
 
 		~Student() {
@@ -59,7 +67,7 @@ public:
 		}
 
 		void setStudent(string Nume, string Prenume, unsigned Varsta) {
-			nume = Nume, prenume = Prenume, varsta = Varsta;
+			Student::nume = Nume, Student::prenume = Prenume, Student::varsta = Varsta;
 		}
 		
 		void printStudent() {
@@ -107,11 +115,15 @@ public:
 
 	};
 
-	class Grupa : public Data_de_Nastere, public Student, public Note {
+	class Grupa : public Student, public Data_de_Nastere, public Note {
 		int nr_grupa;
 	public:
 
 		Grupa(int nrGrupa) {
+			nr_grupa = nrGrupa;
+		}
+
+		Grupa(int nrGrupa, string Nume, string Prenume, unsigned Varsta, int ZiNastere, int LunaNastere, int AnNastere, float n1, float n2, float n3, float n4, float n5) :Student(Nume, Prenume, Varsta), Note(n1, n2, n3, n4, n5), Data_de_Nastere(ZiNastere, LunaNastere, AnNastere)  {
 			nr_grupa = nrGrupa;
 		}
 
@@ -134,11 +146,11 @@ public:
 	}
 
 	void main(void) {
-		Grupa A(1); A.printInfo();
-		Grupa B(2); B.printInfo();
-		Grupa C(1); C.printInfo();
-		Grupa D(3); D.printInfo();
-		Grupa E(4); E.printInfo();
+		Grupa A(1, "Marean", "Dan", 20, 1, 1, 1990, 10, 7, 5, 7, 6); A.printInfo();
+		Grupa B(2, "Genoviu", "Laur", 25, 15, 12, 1985, 5, 5,4,3,2); B.printInfo();
+		Grupa C(1, "Carnat", "Vasile", 18, 15, 4, 1992, 10, 10, 10, 10, 10); C.printInfo();
+		Grupa D(3, "Stanciu", "Vladimir", 25, 16, 11, 1985, 8, 8, 8, 8,8 ); D.printInfo();
+		Grupa E(4, "Ecaterina", "Andreea", 20, 2, 4, 1990, 10, 8, 9, 10, 7); E.printInfo();
 	}
 };
 
@@ -166,10 +178,16 @@ public:
 			
 		}
 
+		Jucatori(string nume, string prenume, unsigned varsta) {
+			Jucatori::nume = nume;
+			Jucatori::prenume = prenume;
+			Jucatori::varsta = varsta;
+		}
+
 		void printPlayer() {
-			cout << "\n\nNume: " << nume;
-			cout << "\nPrenume: " << prenume;
-			cout << "\nVarsta: " << varsta;
+			cout << "\nNume jucator: " << nume;
+			cout << "\nPrenume jucator: " << prenume;
+			cout << "\nVarsta jucator: " << varsta << endl;
 		}
 	};
 
@@ -185,6 +203,10 @@ public:
 		}
 
 		Echipa(string Nume, int Puncte, int Golaveraj) {
+			nume_echipa = Nume, puncte = Puncte, golaveraj = Golaveraj;
+		}
+
+		Echipa(string Nume, int Puncte, int Golaveraj, string numeJucator, string prenume, unsigned varsta) : Jucatori(numeJucator, prenume, varsta) {
 			nume_echipa = Nume, puncte = Puncte, golaveraj = Golaveraj;
 		}
 
@@ -211,18 +233,28 @@ public:
 	}
 
 	void main(void) {
-		Echipa a("Gaz Metan Medias", 14, -1);
-		Echipa b("CFR Cluj", 23, 6);
-		Echipa c("Universitatea Craiova", 23, 9);
-		Echipa d("FCSB", 15, 5);
-		Echipa e("Sepsi", 15, 6);
+		Echipa a("Gaz Metan Medias", 14, -1, "Stigmo", "Cealaul", 24); a.arata_date();
+		Echipa f("Gaz Metan Medias", 14, -1, "Andrei", "Costin", 24); f.arata_date();
 
-		vector <Echipa> ligaI = { a, b,c, d, e };
+		Echipa b("CFR Cluj", 23, 6, "Gennifer", "Kloko", 20); b.arata_date();
+		Echipa g("CFR Cluj", 23, 6, "Mateas", "Emil", 21); g.arata_date();
+
+		Echipa c("Universitatea Craiova", 23, 9, "Ounounou", "Boli", 18); c.arata_date();
+		Echipa d("FCSB", 15, 5, "Boloko", "Mirel", 23); d.arata_date();
+		Echipa e("Sepsi", 15, 6, "Dan", "Sebastian", 21); e.arata_date();
+
+		
+
+		vector <Echipa> ligaI = { a, b,c, d, e};
+
+		
 	
+		system("pause");
 		system("cls");
 		cout << endl;
-		for (auto i : ligaI)
-			cout << i.nume_echipa << endl;
+		for (auto &i : ligaI)
+			cout << i.nume_echipa <<right<< "\t\t"<< i.puncte<< '\t' << i.golaveraj<<endl;
+
 		cout << endl;
 		sort(ligaI.begin(), ligaI.end(), [](const Echipa& l, const Echipa& r) {
 			if (l.puncte > r.puncte)
@@ -235,8 +267,8 @@ public:
 		);
 			
 		cout << "\nClasament\n\n";
-		for (auto i : ligaI)
-			cout << i.nume_echipa << endl;
+		for (auto &i : ligaI)
+			cout << i.nume_echipa <<right<< "\t\t" << i.puncte << '\t' << i.golaveraj << endl;
 
 	}
 
