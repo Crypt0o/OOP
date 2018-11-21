@@ -194,7 +194,7 @@ public:
 				cout << "\nTriunghiul este oarecare\n";
 				break;
 
-			case 4:
+			default:
 				cout << "\nEroare\n";
 				break;
 			}
