@@ -28,6 +28,7 @@ public:
 
 	public:
 		Punct() {
+			x = y = z = 0;
 			cout << "\nPunct nou\n";
 			cout << "\nRho: ";		cin >> rho;
 			cout << "Theta: ";	cin >> theta;
@@ -37,6 +38,7 @@ public:
 		}
 
 		Punct(float Rho, float Theta, float Phi) {
+			x = y = z = 0;
 			rho = Rho, theta = Theta, phi = Phi;
 
 			calculateCartesianCoordinates();
